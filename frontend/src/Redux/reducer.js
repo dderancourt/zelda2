@@ -1,4 +1,4 @@
-import initialState from "../store/store";
+import initialState from "../Store/store";
 
 const reducer = (state = initialState, action) => {};
 

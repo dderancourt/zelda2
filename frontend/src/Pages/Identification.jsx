@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import Login from "../Components/Utilities/Login";
 import SingUp from "../Components/Utilities/Signup";
 
-export default function identification() {
-  const [createCount, setCreateCount] = useState([]);
+function Identification() {
+  const [createCount, setCreateCount] = useState(true);
 
   return (
     <div>
       <div>{createCount ? <Login /> : <SingUp />}</div>
       <p>no account ?</p>
-      <button onClick={setCreateCount(!createCount)}>create and account</button>
+      <button onClick={() => setCreateCount(!createCount)}>
+        create an account
+      </button>
     </div>
   );
 }
+
+export default Identification;

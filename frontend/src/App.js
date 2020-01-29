@@ -1,14 +1,13 @@
 import React from "react";
-import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import identification from "./Pages/Identification";
+import Game from "./Pages/Game";
 
 function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
+        <Route path="/" component={identification} />
         <Route path="/game" component={Game} />
       </Switch>
     </div>
