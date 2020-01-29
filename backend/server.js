@@ -16,6 +16,8 @@ app.use(passport.initialize());
 
 //---------------------------------------------------------------- Routes
 
+app.use("/auth", require("./routes/auth"));
+
 app.get("/", (req, res) => {
   DB.query(`SELECT * FROM users`, (error, results) => {
     if (error) res.status(500).send(error);
