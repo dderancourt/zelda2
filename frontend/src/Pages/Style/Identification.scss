@@ -8,9 +8,10 @@
   display: flex;
   justify-content: center;
   .identificationCard {
-    background-color: rgba(255, 240, 218, 0.507);
-    padding: 10%;
+    background-color: rgba(255, 240, 218, 0.692);
+    padding: 5%;
     border: solid rgb(92, 92, 92) 1px;
     border-radius: 1%;
+    width: 50%;
   }
 }

@@ -4,16 +4,22 @@ import SingUp from "../Components/Utilities/Signup";
 import "./Style/Identification.scss";
 
 function Identification() {
-  const [createCount, setCreateCount] = useState(true);
+  const [createAccount, setCreateAccount] = useState(true);
 
   return (
     <div className="Page">
       <div className="identificationCard">
-        <div>{createCount ? <Login /> : <SingUp />}</div>
+        <div>{createAccount ? <Login /> : <SingUp />}</div>
         <p>no account ?</p>
-        <button onClick={() => setCreateCount(!createCount)}>
-          create an account
-        </button>
+        {createAccount ? (
+          <button onClick={() => setCreateAccount(!createAccount)}>
+            create an account
+          </button>
+        ) : (
+          <button onClick={() => setCreateAccount(!createAccount)}>
+            I have an account
+          </button>
+        )}
       </div>
     </div>
   );
