@@ -1,0 +1,16 @@
+.Page {
+  background-image: url("/Site/Background/background_zelda.jpg");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  min-height: calc(100vh);
+  padding-bottom: 20px;
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  .identificationCard {
+    background-color: rgba(255, 240, 218, 0.507);
+    padding: 10%;
+    border: solid rgb(92, 92, 92) 1px;
+    border-radius: 1%;
+  }
+}
