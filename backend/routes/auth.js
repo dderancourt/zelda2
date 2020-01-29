@@ -14,12 +14,12 @@ router.post("/signup", (req, res) => {
     `SELECT mail FROM users WHERE mail = ?`,
     [formData.mail],
     (err, results) => {
-      if (err) return res.status(500).send("error");
+      if (err) return res.status(500).send("error" + err);
       if (results.length) return res.status(409).send("email already used");
       DB.query(`INSERT INTO users SET ?`, formData, (err, results) => {
         if (err) {
           // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-          return res.status(500).send("Invalid User creation request");
+          return res.status(500).send("Invalid User creation request" + err);
         } else {
           // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
           return res.sendStatus(201);

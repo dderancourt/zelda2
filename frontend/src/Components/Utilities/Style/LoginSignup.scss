@@ -16,13 +16,13 @@ form {
     border: none;
     border-radius: 7px;
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
   }
   .valid {
-    text-align: center;
-    color: rgb(94, 94, 94);
+    visibility: hidden;
   }
   .wrong {
-    visibility: hidden;
+    text-align: center;
+    color: rgb(94, 94, 94);
   }
 }

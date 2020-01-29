@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import "./Style/LoginSignup.scss";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function SignUp() {
+  const history = useHistory("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [pseudo, setPseudo] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const check = () => {};
-
-  function signup(e) {}
+  function signup(e) {
+    e.preventDefault();
+    axios
+      .post(`http://localhost:5000/auth/signup`, {
+        mail: email,
+        password: password,
+        Pseudo: pseudo
+      })
+      .then(() => {
+        history.push("/game");
+      });
+  }
 
   return (
     <div>
@@ -30,6 +42,16 @@ export default function SignUp() {
         </label>
         <label className="button">
           <input
+            id="pseudo"
+            name="pseudo"
+            type="pseudo"
+            value={pseudo}
+            placeholder="pseudo"
+            onChange={evt => setPseudo(evt.target.value)}
+          ></input>
+        </label>
+        <label className="button">
+          <input
             id="password"
             name="password"
             placeholder="mot de passe"
@@ -37,9 +59,6 @@ export default function SignUp() {
             value={password}
             onChange={evt => setPassword(evt.target.value)}
           ></input>
-          <p className={check() ? "wrong" : "valid"}>
-            {password.length < 8 ? "8 caractères minimum" : ""}
-          </p>
         </label>
 
         <label className="button">
@@ -51,18 +70,8 @@ export default function SignUp() {
             value={confirmPassword}
             onChange={evt => setConfirmPassword(evt.target.value)}
           ></input>
-          <p className={check() ? "wrong" : "valid"}>
-            {check() ? "" : "les 2 mots de passe doivent être identiques."}
-          </p>
         </label>
-        <input
-          className="button"
-          type="submit"
-          value="Soummettre"
-          onClick={() => {
-            check();
-          }}
-        ></input>
+        <input className="button" type="submit" value="Soummettre"></input>
       </form>
     </div>
   );

@@ -1,12 +1,26 @@
 import React, { useState } from "react";
 import "./Style/LoginSignup.scss";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  let history = useHistory();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const sublogin = e => {
-    console.log(e);
+    e.preventDefault();
+    axios
+      .post(`http://localhost:5000/auth/login`, {
+        mail: email,
+        password: password
+      })
+      .then(() => {
+        dispatch({ type: "IS_LOGGED", value: true });
+        history.push("/game");
+      });
   };
 
   return (
