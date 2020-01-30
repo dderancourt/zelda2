@@ -7,20 +7,30 @@ import { Link } from "react-router-dom";
 export default function Profil() {
   const dispatch = useDispatch();
   let character = useSelector(state => state.character);
+  let idCharacter = character.id;
+  const max = 1;
 
   useEffect(() => {
-    Axios.get(`http://localhost:5000/char/1`).then(({ data }) => {
+    Axios.get(`http://localhost:5000/char/${idCharacter}`).then(({ data }) => {
       dispatch({ type: "SELECT_CHARACTER", value: data[0] });
     });
   }, []);
 
-  select;
+  function select(idCharacter) {
+    idCharacter += 1;
+    if (idCharacter > max) {
+      idCharacter -= max;
+    }
+    Axios.get(`http://localhost:5000/char/${idCharacter}`).then(({ data }) => {
+      dispatch({ type: "SELECT_CHARACTER", value: data[0] });
+    });
+  }
 
   return (
     <div className="page">
       <div className="character">
         <h3>Your character</h3>
-        <button>next char</button>
+        <button onClick={select(idCharacter)}>next char</button>
         <img src="Game/link/linkFront.png" alt="" />
         <h3>Stats</h3>
         <p>HP : {character.HP}</p>
