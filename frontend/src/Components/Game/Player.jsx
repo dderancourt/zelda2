@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./Style/Player.scss";
 import { useSelector, useDispatch } from "react-redux";
+import { canMove, makeMove } from "./Player_actions";
 
 export default function Player() {
   const assetHeight = 32;
@@ -9,6 +10,14 @@ export default function Player() {
   let y = useSelector(state => state.player.position.y);
   let asset = useSelector(state => state.player.asset);
   let transition = useSelector(state => state.player.transition);
+
+  useEffect(
+    (window.onkeydown = event => {
+      if (canMove(x, y)) {
+        makeMove(event);
+      }
+    })
+  );
 
   return (
     <div

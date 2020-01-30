@@ -14,8 +14,18 @@ export default (state = initialStatePlayer, action) => {
   switch (action) {
     case "MOOVE_PLAYER":
       switch (action.value) {
+        case "LEFT":
+          newState.player.position.x -= 1;
+        case "UP":
+          newState.player.position.y -= 1;
         case "RIGHT":
           newState.player.position.x += 1;
+        case "DOWN":
+          newState.player.position.y += 1;
+
+          break;
+        default:
+          return initialStatePlayer;
       }
     default:
       return initialStatePlayer;

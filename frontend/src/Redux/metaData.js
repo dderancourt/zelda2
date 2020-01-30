@@ -8,8 +8,10 @@ export default (state = initialStateMeta, action) => {
   switch (action) {
     case "IS_LOGGED":
       newState.is_logged = true;
+      break;
     case "LOAD_MAP":
       newState.map = action.value;
+      break;
     default:
       return initialStateMeta;
   }
