@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Style/Player.scss";
 import { useSelector, useDispatch } from "react-redux";
 import canMove from "./player_actions";
 
 export default function Player() {
+  const [clockCanMove, setClockCanMove] = useState(true);
   const assetHeight = 32;
   const assetWidth = 32;
+  let moveSpeed = useSelector(state => state.character.moovespeed);
   let x = useSelector(state => state.player.position.x);
   let y = useSelector(state => state.player.position.y);
   let asset = useSelector(state => state.player.asset);
@@ -40,9 +42,13 @@ export default function Player() {
   useEffect(
     (window.onkeydown = event => {
       if (!mapArray.length) return;
-      setTimeout(() => {
+      if (clockCanMove) {
+        setClockCanMove(false);
+        setTimeout(() => {
+          setClockCanMove(true);
+        }, moveSpeed);
         move(event);
-      }, 100);
+      }
     }),
     []
   );
