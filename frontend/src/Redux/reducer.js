@@ -25,6 +25,9 @@ const reducer = (state = initialState, action) => {
         default:
           return initialState;
       }
+    case "SELECT_CHARACTER":
+      newState.character = action.value;
+      return newState;
     case "IS_LOGGED":
       newState.metaData.is_logged = true;
       return newState;

@@ -13,25 +13,25 @@ export default function Player() {
   let transition = useSelector(state => state.player.transition);
   const dispatch = useDispatch();
 
-  function makeMove(event) {
+  function move(event) {
     let newKey = event.key;
     switch (newKey) {
       case "ArrowLeft":
-        x -= 1;
-        canMove(x, y, mapArray);
-        return "LEFT";
+        if (canMove(x - 1, y, mapArray))
+          dispatch({ type: "MOVE", value: "LEFT" });
+        break;
       case "ArrowUp":
-        y -= 1;
-        canMove(x, y, mapArray);
-        return "UP";
+        if (canMove(x, y - 1, mapArray))
+          dispatch({ type: "MOVE", value: "UP" });
+        break;
       case "ArrowRight":
-        x += 1;
-        canMove(x, y, mapArray);
-        return "RIGHT";
+        if (canMove(x + 1, y, mapArray))
+          dispatch({ type: "MOVE", value: "RIGHT" });
+        break;
       case "ArrowDown":
-        y += 1;
-        canMove(x, y, mapArray);
-        return "DOWN";
+        if (canMove(x, y + 1, mapArray))
+          dispatch({ type: "MOVE", value: "DOWN" });
+        break;
       default:
         return "none";
     }
@@ -40,7 +40,9 @@ export default function Player() {
   useEffect(
     (window.onkeydown = event => {
       if (!mapArray.length) return;
-      dispatch({ type: "MOVE", value: makeMove(event) });
+      setTimeout(() => {
+        move(event);
+      }, 100);
     }),
     []
   );

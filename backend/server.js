@@ -18,6 +18,7 @@ app.use(passport.initialize());
 
 app.use("/auth", require("./routes/auth"));
 app.use("/map", require("./routes/map"));
+app.use("/char", require("./routes/char"));
 
 app.get("/", (req, res) => {
   DB.query(`SELECT * FROM users`, (error, results) => {

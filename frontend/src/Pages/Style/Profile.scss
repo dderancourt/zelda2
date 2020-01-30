@@ -1,0 +1,16 @@
+.page {
+  background-image: url("/Site/Background/background_zelda.jpg");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  min-height: calc(100vh);
+  padding-bottom: 20px;
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  div {
+    background-color: rgba(255, 235, 205, 0.349);
+    border: solid black 1px;
+    border-radius: 1%;
+    padding: 15%;
+  }
+}

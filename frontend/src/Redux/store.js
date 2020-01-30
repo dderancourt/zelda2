@@ -10,6 +10,13 @@ const initialState = {
     },
     asset: `Game/link/linkFront.png`,
     transition: ""
+  },
+  character: {
+    asset: "",
+    HP: "",
+    ATK: "",
+    movespeed: "",
+    weapon: ""
   }
 };
 
