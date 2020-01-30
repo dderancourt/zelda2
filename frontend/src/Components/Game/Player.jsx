@@ -11,17 +11,17 @@ export default function Player() {
   let asset = useSelector(state => state.player.asset);
   let mapArray = useSelector(state => state.metaData.mapArray);
   let transition = useSelector(state => state.player.transition);
-  let mapLoaded = useSelector(state => state.metaData.mapLoaded);
   const dispatch = useDispatch();
 
   useEffect(
     (window.onkeydown = event => {
-      if (mapLoaded) {
-        console.log(mapArray);
-        if (canMove(x, y, mapArray)) {
-          dispatch({ type: makeMove(event, x, y) });
-        }
+      if (!mapArray.length) {
+        return;
       }
+      if (!canMove(x, y, mapArray)) return;
+
+      console.log(makeMove(event));
+      dispatch({ type: makeMove(event) });
     })
   );
 

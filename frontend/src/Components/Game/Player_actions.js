@@ -3,7 +3,7 @@ function canMove(x, y, mapArray) {
   const leftBorder = 0;
   const bottomBorder = 14;
   const rightBorder = 19;
-  if (
+  return (
     rightBorder >= x &&
     leftBorder <= x &&
     bottomBorder >= y &&
@@ -13,23 +13,20 @@ function canMove(x, y, mapArray) {
     //   y !== this.state.NPC.y ||
     //   !this.state.NPC.isAlive ||
     //   this.state.mapNumber === tilesMap2)
-  ) {
-    return true;
-  } else {
-    return false;
-  }
+  );
 }
 
-function makeMove(event, x, y) {
-  let newPositionX = x;
-  let newPositionY = y;
-  let ActualX = x;
-  let ActualY = y;
-  let newDirection;
+function makeMove(event) {
   let newKey = event.key;
   switch (newKey) {
-    case "RIGHT":
+    case "ArrowLeft":
+      return "LEFT";
+    case "ArrowUp":
+      return "UP";
+    case "ArrowRight":
       return "RIGHT";
+    case "ArrowDown":
+      return "DOWN";
     default:
       return;
   }

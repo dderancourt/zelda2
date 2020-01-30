@@ -5,12 +5,13 @@ import { tileNames } from "../../tileNames";
 import { useDispatch } from "react-redux";
 
 export default function Map() {
-  const [mapArray, setMap] = useState();
+  const [mapArray, setMap] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     Axios.get(`http://localhost:5000/map/1`).then(({ data }) => {
       setMap(data);
+      dispatch({ type: "LOAD_MAP", value: data });
     });
   }, []);
 
@@ -30,8 +31,7 @@ export default function Map() {
 
   return (
     <div className="map">
-      {mapArray ? (
-        (dispatch({ type: "MAP_LOADED" }),
+      {mapArray.length ? (
         mapArray.map((row, rowIndex) =>
           row.map((tile, tileIndex) => {
             return (
@@ -45,7 +45,7 @@ export default function Map() {
               ></div>
             );
           })
-        ))
+        )
       ) : (
         <p>Loading</p>
       )}

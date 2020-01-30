@@ -1,17 +1,8 @@
-const initialStatePlayer = {
-  position: {
-    x: "3",
-    y: "4"
-  },
-  asset: {
-    right: ""
-  },
-  transition: ""
-};
+import initialState from "./store";
 
-export default (state = initialStatePlayer, action) => {
+const reducer = (state = initialState, action) => {
   const newState = state;
-  switch (action) {
+  switch (action.type) {
     case "MOOVE_PLAYER":
       switch (action.value) {
         case "LEFT":
@@ -23,11 +14,18 @@ export default (state = initialStatePlayer, action) => {
         case "DOWN":
           newState.player.position.y += 1;
 
-          break;
         default:
-          return initialStatePlayer;
+          return initialState;
       }
+    case "IS_LOGGED":
+      newState.metaData.is_logged = true;
+
+    case "LOAD_MAP":
+      newState.metaData.mapArray = action.value;
+
     default:
-      return initialStatePlayer;
+      return initialState;
   }
 };
+
+export default reducer;
