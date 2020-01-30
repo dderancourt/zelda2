@@ -9,12 +9,18 @@ export default function Player() {
   let x = useSelector(state => state.player.position.x);
   let y = useSelector(state => state.player.position.y);
   let asset = useSelector(state => state.player.asset);
+  let mapArray = useSelector(state => state.metaData.mapArray);
   let transition = useSelector(state => state.player.transition);
+  let mapLoaded = useSelector(state => state.metaData.mapLoaded);
+  const dispatch = useDispatch();
 
   useEffect(
     (window.onkeydown = event => {
-      if (canMove(x, y)) {
-        makeMove(event);
+      if (mapLoaded) {
+        console.log(mapArray);
+        if (canMove(x, y, mapArray)) {
+          dispatch({ type: makeMove(event, x, y) });
+        }
       }
     })
   );

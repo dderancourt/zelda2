@@ -1,6 +1,7 @@
 const initialStateMeta = {
   is_logged: false,
-  map: [[]]
+  mapArray: [],
+  mapLoaded: false
 };
 
 export default (state = initialStateMeta, action) => {
@@ -10,8 +11,10 @@ export default (state = initialStateMeta, action) => {
       newState.is_logged = true;
       break;
     case "LOAD_MAP":
-      newState.map = action.value;
+      newState.mapArray = action.value;
       break;
+    case "MAP_LOADED":
+      newState.mapLoaded = true;
     default:
       return initialStateMeta;
   }

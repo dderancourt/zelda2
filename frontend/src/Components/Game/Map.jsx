@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./Style/Map.scss";
 import Axios from "axios";
 import { tileNames } from "../../tileNames";
+import { useDispatch } from "react-redux";
 
 export default function Map() {
   const [mapArray, setMap] = useState();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     Axios.get(`http://localhost:5000/map/1`).then(({ data }) => {
@@ -29,7 +31,7 @@ export default function Map() {
   return (
     <div className="map">
       {mapArray ? (
-        (console.log(mapArray),
+        (dispatch({ type: "MAP_LOADED" }),
         mapArray.map((row, rowIndex) =>
           row.map((tile, tileIndex) => {
             return (

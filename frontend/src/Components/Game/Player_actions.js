@@ -1,5 +1,4 @@
-// this method is a dependency of getMovement  that performs all the collision tests to determine whether to allow or to prevent movement of the player
-function canMove(x, y) {
+function canMove(x, y, mapArray) {
   const topBorder = 0;
   const leftBorder = 0;
   const bottomBorder = 14;
@@ -9,11 +8,11 @@ function canMove(x, y) {
     leftBorder <= x &&
     bottomBorder >= y &&
     topBorder <= y &&
-    !this.state.mapNumber[y][x].includes("Z") &&
-    (x !== this.state.NPC.x ||
-      y !== this.state.NPC.y ||
-      !this.state.NPC.isAlive ||
-      this.state.mapNumber === tilesMap2)
+    !mapArray[y][x].includes("Z") //&&
+    // (x !== this.state.NPC.x ||
+    //   y !== this.state.NPC.y ||
+    //   !this.state.NPC.isAlive ||
+    //   this.state.mapNumber === tilesMap2)
   ) {
     return true;
   } else {
@@ -21,6 +20,19 @@ function canMove(x, y) {
   }
 }
 
-function makeMove(event) {}
+function makeMove(event, x, y) {
+  let newPositionX = x;
+  let newPositionY = y;
+  let ActualX = x;
+  let ActualY = y;
+  let newDirection;
+  let newKey = event.key;
+  switch (newKey) {
+    case "RIGHT":
+      return "RIGHT";
+    default:
+      return;
+  }
+}
 
-export default { canMove, makeMove };
+export { canMove, makeMove };
