@@ -19,7 +19,7 @@ export default function Login() {
       })
       .then(() => {
         dispatch({ type: "IS_LOGGED", value: true });
-        history.push("/game");
+        history.push("/gamepage");
       });
   };
 

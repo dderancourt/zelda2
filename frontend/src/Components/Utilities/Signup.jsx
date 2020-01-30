@@ -19,7 +19,7 @@ export default function SignUp() {
         Pseudo: pseudo
       })
       .then(() => {
-        history.push("/game");
+        history.push("/gamepage");
       });
   }
 

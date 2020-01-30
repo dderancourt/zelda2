@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Style/Player.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { canMove, makeMove } from "./Player_actions";
+import { canMove, makeMove } from "./player_actions";
 
 export default function Player() {
   const assetHeight = 32;

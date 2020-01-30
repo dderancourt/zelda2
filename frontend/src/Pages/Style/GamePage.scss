@@ -1,6 +1,12 @@
-.gameScreen {
-  position: relative;
-  margin: 0 auto;
-  min-width: 640px;
-  overflow: hidden;
+.GamePage {
+  background-color: #608863;
+  background-image: url("/background_zelda.jpg");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  min-height: calc(100vh);
+  padding-bottom: 20px;
+  padding-top: 30px;
+}
+.Container {
+  display: flex;
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import Map from "../Components/Game/Map";
-import Player from "../Components/Game/Player";
+import Map from "./Map";
+import Player from "./Player";
 import "./Style/Game.scss";
 
 export default function Game() {
