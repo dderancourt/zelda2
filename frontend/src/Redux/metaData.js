@@ -1,6 +1,6 @@
-import initialState from "../Store/store";
+import initialStateMeta from "../Store/meta";
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialStateMeta, action) => {
   const newState = state;
   switch (action) {
     case "IS_LOGGED":
