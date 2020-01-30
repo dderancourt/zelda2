@@ -5,12 +5,10 @@ const initialState = {
   },
   player: {
     position: {
-      x: "3",
-      y: "4"
+      x: 3,
+      y: 4
     },
-    asset: {
-      right: ""
-    },
+    asset: `Game/link/linkFront.png`,
     transition: ""
   }
 };

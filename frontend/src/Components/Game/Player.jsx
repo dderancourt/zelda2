@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import "./Style/Player.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { canMove, makeMove } from "./player_actions";
+import canMove from "./player_actions";
 
 export default function Player() {
-  let state = useSelector(state => state.player.position.x);
-  console.log(state);
   const assetHeight = 32;
   const assetWidth = 32;
   let x = useSelector(state => state.player.position.x);
@@ -15,18 +13,41 @@ export default function Player() {
   let transition = useSelector(state => state.player.transition);
   const dispatch = useDispatch();
 
+  function makeMove(event) {
+    let newKey = event.key;
+    switch (newKey) {
+      case "ArrowLeft":
+        x -= 1;
+        canMove(x, y, mapArray);
+        return "LEFT";
+      case "ArrowUp":
+        y -= 1;
+        canMove(x, y, mapArray);
+        return "UP";
+      case "ArrowRight":
+        x += 1;
+        canMove(x, y, mapArray);
+        return "RIGHT";
+      case "ArrowDown":
+        y += 1;
+        canMove(x, y, mapArray);
+        return "DOWN";
+      default:
+        return "none";
+    }
+  }
+
   useEffect(
     (window.onkeydown = event => {
       if (!mapArray.length) return;
-      if (!canMove(x, y, mapArray)) return;
-
-      dispatch({ type: makeMove(event) });
+      dispatch({ type: "MOVE", value: makeMove(event) });
     }),
     []
   );
 
   return (
     <div
+      className="player"
       style={{
         top: `${y * assetHeight}px`,
         left: `${x * assetWidth}px`,

@@ -6,10 +6,12 @@ import "./Style/Game.scss";
 
 export default function Game() {
   return (
-    <div className="gameScreen">
+    <div className="game">
       <TopBar />
-      <Map />
-      <Player />
+      <div className="gameScreen">
+        <Map />
+        <Player />
+      </div>
     </div>
   );
 }

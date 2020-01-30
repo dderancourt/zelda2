@@ -16,20 +16,4 @@ function canMove(x, y, mapArray) {
   );
 }
 
-function makeMove(event) {
-  let newKey = event.key;
-  switch (newKey) {
-    case "ArrowLeft":
-      return "LEFT";
-    case "ArrowUp":
-      return "UP";
-    case "ArrowRight":
-      return "RIGHT";
-    case "ArrowDown":
-      return "DOWN";
-    default:
-      return "none";
-  }
-}
-
-export { canMove, makeMove };
+export default canMove;
