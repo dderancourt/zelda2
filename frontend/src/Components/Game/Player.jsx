@@ -15,14 +15,13 @@ export default function Player() {
 
   useEffect(
     (window.onkeydown = event => {
-      if (!mapArray.length) {
-        return;
-      }
+      if (!mapArray.length) return;
       if (!canMove(x, y, mapArray)) return;
 
       console.log(makeMove(event));
       dispatch({ type: makeMove(event) });
-    })
+    }),
+    []
   );
 
   return (

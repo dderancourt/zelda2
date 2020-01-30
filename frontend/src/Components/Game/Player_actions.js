@@ -28,7 +28,7 @@ function makeMove(event) {
     case "ArrowDown":
       return "DOWN";
     default:
-      return;
+      return "none";
   }
 }
 
