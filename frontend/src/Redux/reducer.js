@@ -7,27 +7,27 @@ const reducer = (state = initialState, action) => {
       switch (action.value) {
         case "LEFT":
           newState.player.position.x -= 1;
-          break;
+          return newState;
         case "UP":
           newState.player.position.y -= 1;
-          break;
+          return newState;
         case "RIGHT":
           newState.player.position.x += 1;
-          break;
+          return newState;
         case "DOWN":
           newState.player.position.y += 1;
-          break;
+          return newState;
 
         default:
           return initialState;
       }
     case "IS_LOGGED":
       newState.metaData.is_logged = true;
-      break;
+      return newState;
 
     case "LOAD_MAP":
       newState.metaData.mapArray = action.value;
-      break;
+      return newState;
 
     default:
       return initialState;

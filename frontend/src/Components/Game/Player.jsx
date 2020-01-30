@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { canMove, makeMove } from "./player_actions";
 
 export default function Player() {
+  let state = useSelector(state => state.player.position.x);
+  console.log(state);
   const assetHeight = 32;
   const assetWidth = 32;
   let x = useSelector(state => state.player.position.x);
@@ -18,7 +20,6 @@ export default function Player() {
       if (!mapArray.length) return;
       if (!canMove(x, y, mapArray)) return;
 
-      console.log(makeMove(event));
       dispatch({ type: makeMove(event) });
     }),
     []
