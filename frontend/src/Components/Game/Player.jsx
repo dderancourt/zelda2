@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Style/Player.scss";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Player() {
   const assetHeight = 32;
   const assetWidth = 32;
-  let x = useSelector(state => state.player.postition.x);
-  let y = useSelector(state => state.player.postition.y);
-  let transition = useSelector(state => state.player.asset);
+  let x = useSelector(state => state.player.position.x);
+  let y = useSelector(state => state.player.position.y);
+  let asset = useSelector(state => state.player.asset);
+  let transition = useSelector(state => state.player.transition);
 
   return (
     <div
-      className={attackClass}
       style={{
         top: `${y * assetHeight}px`,
         left: `${x * assetWidth}px`,

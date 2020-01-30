@@ -1,6 +1,15 @@
-import initialStatePlayer from "../Store/meta";
+const initialStatePlayer = {
+  position: {
+    x: "3",
+    y: "4"
+  },
+  asset: {
+    right: ""
+  },
+  transition: ""
+};
 
-const reducer = (state = initialStatePlayer, action) => {
+export default (state = initialStatePlayer, action) => {
   const newState = state;
   switch (action) {
     case "MOOVE_PLAYER":
@@ -8,7 +17,7 @@ const reducer = (state = initialStatePlayer, action) => {
         case "RIGHT":
           newState.player.position.x += 1;
       }
+    default:
+      return initialStatePlayer;
   }
 };
-
-export default reducer;
