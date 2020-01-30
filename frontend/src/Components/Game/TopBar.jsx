@@ -1,19 +1,17 @@
 import React from "react";
 import WeaponBar from "./WeaponBar";
 import HealthBar from "./HealthBar";
-import "./GameTopBar.css";
+import "./Style/TopBar.scss";
 import RubisCounter from "./RubisCounter";
 
-export default function GameTopBar() {
+export default function TopBar() {
   return (
     <div className="gameTopBar">
-      <HealthBar HP={this.props.HP} />
+      <HealthBar />
 
-      <WeaponBar haveSword={this.props.haveSword} />
+      <WeaponBar />
 
-      <RubisCounter rubyCounter={this.props.rubyCounter} />
+      <RubisCounter />
     </div>
   );
 }
-
-export default GameTopBar;

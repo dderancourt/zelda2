@@ -9,13 +9,7 @@ export default function WeaponBar() {
         <p>C</p>
       </div>
       <div>
-        <div
-          style={{
-            backgroundImage: this.props.haveSword
-              ? 'url("/items/normalSword.png")'
-              : ""
-          }}
-        ></div>
+        <div>arme</div>
         <div></div>
         <div></div>
       </div>
