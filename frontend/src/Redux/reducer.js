@@ -25,10 +25,23 @@ const reducer = (state = initialState, action) => {
         default:
           return initialState;
       }
-    case "SELECT_CHARACTER":
-      console.log(action.value);
+    case "FETCH_CHARACTER":
       newState.character = action.value;
       return newState;
+    case "NEXT_CHARACTER":
+      if (
+        (newState.character.id = newState.metaData.numberOfChar) ||
+        !newState.metaData.logged
+      ) {
+        return {
+          ...newState,
+          character: { ...newState.character, id: 1 }
+        };
+      }
+      return {
+        ...newState,
+        character: { ...newState.character, id: newState.character.id + 1 }
+      };
     case "LOGGED":
       newState.metaData.isLogged = true;
       newState.character.id = action.value.user.userSChar;

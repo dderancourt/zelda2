@@ -3,12 +3,18 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import reducer from "./Redux/reducer";
-import { createStore } from "redux";
+import thunk from "redux-thunk";
+import { createStore, applyMiddleware, compose } from "redux";
 import "./reset.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-const store = createStore(reducer);
+const createStoreWithMiddleware = compose(applyMiddleware(thunk))(createStore);
+
+const store = createStoreWithMiddleware(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <BrowserRouter>

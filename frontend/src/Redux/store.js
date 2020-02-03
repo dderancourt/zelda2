@@ -6,7 +6,8 @@ const initialState = {
   },
   metaData: {
     isLogged: false,
-    mapArray: []
+    mapArray: [],
+    numberOfChar: 2
   },
   player: {
     position: {
@@ -18,6 +19,7 @@ const initialState = {
   },
   character: {
     id: "",
+    name: "",
     asset: "",
     HP: "",
     ATK: "",

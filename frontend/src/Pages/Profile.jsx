@@ -7,32 +7,44 @@ import { Link } from "react-router-dom";
 export default function Profil() {
   const dispatch = useDispatch();
   let idCharacter = useSelector(state => state.character.id);
-  let logged = useSelector(state => state.metaData.isLogged);
   let character = useSelector(state => state.character);
-  const max = 2;
 
-  function selectNextChar(idCharacter) {
-    if (!logged) idCharacter = 1;
-    else {
-      if (idCharacter > max) idCharacter = 1;
-      else idCharacter += 1;
-    }
+  useEffect(() => {
+    if (!idCharacter) return;
     Axios.get(`http://localhost:5000/char/${idCharacter}`).then(({ data }) => {
-      dispatch({ type: "SELECT_CHARACTER", value: data[0] });
+      dispatch({ type: "FETCH_CHARACTER", value: data[0] });
     });
+  }, [idCharacter]);
+
+  function selectNextChar() {
+    dispatch({ type: "NEXT_CHARACTER" });
   }
 
   function saveChar() {
-    Axios.post(``);
+    Axios.post(`http://localhost:5000/char/save`, { idCharacter: idCharacter })
+      .then(() => {
+        toast.success("Votre personnage a bien été sélectionné !", {
+          className: "customStyleToastContainer"
+        });
+      })
+      .catch(() => {
+        toast.error(
+          "Une erreur s'est produite lors de la mise à jour de votre kilométrage, veuillez réessayer",
+          {
+            className: "customStyleToastContainer"
+          }
+        );
+      });
   }
 
   return (
     <div className="page">
       <div className="character">
         <h3>Your character</h3>
-        <button onClick={() => selectNextChar(idCharacter)}>next char</button>
+        <button onClick={() => selectNextChar()}>next char</button>
         <img src="Game/link/linkFront.png" alt="" />
         <h3>Stats</h3>
+        <p>character : {character.name}</p>
         <p>HP : {character.HP}</p>
         <p>movespeed : {character.moovespeed}</p>
         <p>ATK : {character.ATK}</p>
