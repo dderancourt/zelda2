@@ -12,17 +12,17 @@ passport.use(
     },
     (mail, password, done) => {
       DB.query(
-        `SELECT id, mail, password 
-        FROM users
-        WHERE mail=?
-        LIMIT 1`,
+        `SELECT users.id, mail, password, parties.id_user AS userSPARTIE, id_character AS userSChar FROM users
+        INNER JOIN parties ON parties.id=parties.id_user
+
+        WHERE users.mail=?;
+        `,
         mail,
         (err, rows) => {
           if (err) return done(err, false, "Error while fetching user!");
           if (!rows[0]) return done(null, false, "User not found!");
-          const { id, mail } = rows[0];
-          const user = { id, mail };
-
+          const { id, mail, userSPARTIE, userSChar } = rows[0];
+          const user = { id, mail, userSPARTIE, userSChar };
           const isPasswordOK = bcrypt.compareSync(password, rows[0].password);
           if (!isPasswordOK) return done(null, false, "Wrong password!");
           return done(null, user);

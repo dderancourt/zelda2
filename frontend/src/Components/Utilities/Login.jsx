@@ -17,10 +17,10 @@ export default function Login() {
         mail: email,
         password: password
       })
-      .then(() => {
-        dispatch({ type: "IS_LOGGED", value: true });
-        history.push("/gamepage");
-      });
+      .then(({ data }) => {
+        dispatch({ type: "LOGGED", value: data });
+      })
+      .then(history.push("/profile"));
   };
 
   return (

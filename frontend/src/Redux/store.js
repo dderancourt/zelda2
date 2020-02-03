@@ -1,6 +1,11 @@
 const initialState = {
+  profile: {
+    save: "",
+    char: "",
+    idPlayer: ""
+  },
   metaData: {
-    is_logged: false,
+    isLogged: false,
     mapArray: []
   },
   player: {
@@ -12,6 +17,7 @@ const initialState = {
     transition: ""
   },
   character: {
+    id: "",
     asset: "",
     HP: "",
     ATK: "",

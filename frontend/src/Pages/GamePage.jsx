@@ -5,14 +5,15 @@ import BoardCard from "../Components/Utilities/BoardCard";
 import Game from "../Components/Game/Game";
 import "./Style/GamePage.scss";
 import Axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function GamePage() {
   const dispatch = useDispatch();
+  const idPlayer = useSelector(state => state.profile.idPlayer);
 
   useEffect(() => {
-    Axios.get(`http://localhost:5000/char/1`).then(({ data }) => {
-      dispatch({ type: "SELECT_CHARACTER", value: data[0] });
+    Axios.get(`http://localhost:5000/partie/${idPlayer}`).then(({ data }) => {
+      dispatch({ type: "FETCH_PLAYER", value: data[0] });
     });
   });
 

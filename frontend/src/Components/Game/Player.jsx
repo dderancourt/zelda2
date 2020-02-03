@@ -41,8 +41,7 @@ export default function Player() {
 
   useEffect(
     (window.onkeydown = event => {
-      if (!mapArray.length) return;
-      if (clockCanMove) {
+      if (mapArray.length && clockCanMove) {
         setClockCanMove(false);
         setTimeout(() => {
           setClockCanMove(true);

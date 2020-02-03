@@ -26,14 +26,16 @@ const reducer = (state = initialState, action) => {
           return initialState;
       }
     case "SELECT_CHARACTER":
+      console.log(action.value);
       newState.character = action.value;
       return newState;
-    case "IS_LOGGED":
-      newState.metaData.is_logged = true;
+    case "LOGGED":
+      newState.metaData.isLogged = true;
+      newState.character.id = action.value.user.userSChar;
       return newState;
 
-    case "LOAD_MAP":
-      newState.metaData.mapArray = action.value;
+    case "FETCH_PLAYER":
+      newState.proflie = action.value;
       return newState;
 
     default:
