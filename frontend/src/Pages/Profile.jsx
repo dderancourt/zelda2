@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 import "./Style/Profile.scss";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import "./Style/ModalConfirmation.scss";
 
 export default function Profil() {
   const dispatch = useDispatch();
   let idCharacter = useSelector(state => state.character.id);
+  let id_player = useSelector(state => state.player.id);
   let character = useSelector(state => state.character);
 
   useEffect(() => {
@@ -20,8 +23,12 @@ export default function Profil() {
     dispatch({ type: "NEXT_CHARACTER" });
   }
 
-  function saveChar() {
-    Axios.post(`http://localhost:5000/char/save`, { idCharacter: idCharacter })
+  const saveChar = e => {
+    e.preventDefault();
+    Axios.post(`http://localhost:5000/char/save`, {
+      id_character: idCharacter,
+      id: id_player
+    })
       .then(() => {
         toast.success("Votre personnage a bien été sélectionné !", {
           className: "customStyleToastContainer"
@@ -29,13 +36,13 @@ export default function Profil() {
       })
       .catch(() => {
         toast.error(
-          "Une erreur s'est produite lors de la mise à jour de votre kilométrage, veuillez réessayer",
+          "Une erreur s'est produite lors de la mise à jour de votre personnage, veuillez réessayer",
           {
             className: "customStyleToastContainer"
           }
         );
       });
-  }
+  };
 
   return (
     <div className="page">
@@ -51,8 +58,16 @@ export default function Profil() {
         <div className="weapon">
           Weapon : <img src="Game/Item/normalSword.png" alt="" />
         </div>
-        <form action="selectChar">
-          <button onClick={() => saveChar()}>select Char</button>
+        <form
+          onSubmit={e => {
+            saveChar(e);
+          }}
+        >
+          <input
+            className="button"
+            type="submit"
+            value="select Character"
+          ></input>
         </form>
         <Link to="/gamepage">
           <button>play de game</button>

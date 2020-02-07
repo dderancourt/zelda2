@@ -14,16 +14,15 @@ const initialState = {
       x: 3,
       y: 4
     },
-    asset: `Game/link/linkFront.png`,
-    transition: ""
+    HP: 6
   },
   character: {
     id: "",
     name: "",
-    asset: "",
+    asset: "Game/link/linkFront.png",
     HP: "",
     ATK: "",
-    movespeed: "",
+    movespeed: 100,
     weapon: ""
   }
 };

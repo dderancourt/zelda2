@@ -7,10 +7,10 @@ export default function Player() {
   const [clockCanMove, setClockCanMove] = useState(true);
   const assetHeight = 32;
   const assetWidth = 32;
-  let moveSpeed = useSelector(state => state.character.moovespeed);
+  let moveSpeed = useSelector(state => state.character.movespeed);
   let x = useSelector(state => state.player.position.x);
   let y = useSelector(state => state.player.position.y);
-  let asset = useSelector(state => state.player.asset);
+  let asset = useSelector(state => state.character.asset);
   let mapArray = useSelector(state => state.metaData.mapArray);
   let transition = useSelector(state => state.player.transition);
   const dispatch = useDispatch();
